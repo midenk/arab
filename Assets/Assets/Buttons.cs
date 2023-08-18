@@ -4,14 +4,31 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Photon.Pun;
 using TMPro;
+using Photon.Realtime;
 
-public class Buttons : MonoBehaviour
+public class Buttons : MonoBehaviourPunCallbacks
 {
    public TMP_InputField name;
-   public void Play()
+    public override void OnConnectedToMaster()
+    {
+        RoomOptions roomOptions = new RoomOptions();
+        PhotonNetwork.JoinOrCreateRoom(" barabara", roomOptions, TypedLobby.Default);
+        Debug.Log("join");
+    }
+
+    public override void OnCreatedRoom()
+    {
+        Debug.Log("create");
+    }
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("joinn");
+        PhotonNetwork.LoadLevel("lvl4");
+    }
+    public void Play()
     {
         PhotonNetwork.NickName = name.text;
-        SceneManager.LoadScene("lvl4");
+        PhotonNetwork.ConnectUsingSettings();   
     }
    public void Continue()
     {

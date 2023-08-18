@@ -10,7 +10,7 @@ public class playerspawn : MonoBehaviour
     {
         if (PhotonNetwork.InRoom)
         {
-            PhotonNetwork.Instantiate("Player", new Vector3(-223.0632f, -83.37817f, -121.5085f), Quaternion.identity);
+            PhotonNetwork.Instantiate("Player", new Vector3(0.8593892f, 0.303198f), Quaternion.identity);
         }
     }
 
